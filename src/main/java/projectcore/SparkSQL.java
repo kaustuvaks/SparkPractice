@@ -23,7 +23,7 @@ import org.apache.spark.sql.SparkSession;
 import scala.collection.immutable.Seq;
 import scala.collection.JavaConverters;
 
-public class App {
+public class SparkSQL {
 
 	public static void main(final String args[]) throws IOException, InterruptedException, ConnectException {
 		try(final var  spark = SparkSession.builder().appName("SparkProgramOne").master("local[*]").getOrCreate();
@@ -39,8 +39,6 @@ public class App {
 			PrintWriter pout = new PrintWriter("c:/Users/kaust/Desktop/apachedta.json");
 			pout.println(responseBody);
 			pout.close();
-			
-			System.out.println(responseBody);
 			
 			Dataset<Row> dataset = spark.read().option("header", "false").option("inferSchema", "true").json("c:/Users/kaust/Desktop/apachedta.json");
 			//Dataset<Row> lis = spark.read().json(responseBody);
